@@ -1,0 +1,66 @@
+span+span {
+    margin-left: 10px
+}
+
+
+.actions {
+    text-align: right;
+    text-decoration: underline;
+}
+
+.actions button {
+    font: inherit;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #8a2b06;
+    padding: 0.5rem 2rem;
+    border-radius: 25px;
+    margin-left: 1rem;
+    text-decoration: underline;
+}
+
+.actions button:hover,
+.actions button:active {
+    background-color: #5a1a01;
+    border-color: #5a1a01;
+    color: rgb(149, 146, 146);
+}
+
+.actions .button--alt {
+    color: #8a2b06;
+}
+
+.actions .button {
+    background-color: #8a2b06;
+    color: white;
+}
+
+.event_type {
+    text-transform: uppercase;
+    color: grey;
+    font-size: 13px;
+    margin-bottom: 1rem;
+    padding-bottom: 15px;
+}
+
+.description {
+    text-indent: 2%;
+    padding-bottom: 20px;
+}
+
+.related-events {
+    display: flex;
+    flex-direction: horizontal;
+    padding: 15px 0;
+}
+
+.closeButton {
+    margin-top: 1rem;
+    float: right;
+}
+
+.all-information {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

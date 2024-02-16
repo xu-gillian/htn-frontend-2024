@@ -1,0 +1,128 @@
+body {
+    /* background: #F4F7FD; */
+    margin: 20px 0p;
+    color: white;
+}
+
+button {
+    border: none;
+    background: none;
+}
+
+button:hover {
+    color: transparent;
+    background: none;
+}
+
+.seeDetails {
+    font-family: inherit;
+    font-size: 15 px;
+    color: rgb(216, 190, 235);
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 20px 0 0 0;
+}
+
+.seeDetails:hover {
+    color: rgb(163, 161, 161);
+}
+
+.card {
+    border: 0;
+    box-shadow: 0px 0px 10px 0px #edf1fc;
+    margin: 20px 10%;
+    border-radius: 20px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.card-header:first-child {
+    border-radius: calc(8px - 1px) calc(8px - 1px) 0 0;
+}
+
+.event-time {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.date-wrapper {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 20px;
+    font-size: 40px;
+}
+
+.date {
+    text-shadow: 1px 1px 20px #fff, 1px 1px 20px #ccc;
+}
+
+.information-wrapper {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: calc(100% - 300px);
+}
+
+.information-name {
+    font-size: 30px;
+    color: rgb(116, 73, 225);
+    font-weight: bold;
+}
+
+.information-type {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: rgb(185, 168, 230);
+}
+
+@media screen and (max-width: 600px) {
+    .card {
+        border: 0;
+        box-shadow: 0px 0px 10px 0px #edf1fc;
+        margin: 20px 10%;
+        border-radius: 20px;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .date-wrapper {
+        width: fit-content;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 5px 20px;
+        font-size: 40px;
+    }
+
+    .date {
+        padding-right: 5px;
+    }
+
+    .information-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .event-time {
+        width: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        padding: 10px;
+    }
+}
