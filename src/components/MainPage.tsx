@@ -6,6 +6,7 @@ import { TEvent } from '../types/Events.types';
 import Details from './Events/Details';
 import { EventIdProvider } from '../context/eventId-context';
 import NavBar from './NavBar';
+import { useLoginState } from '../context/loginState-context';
 
 const DisplayEvents: React.FC = () => {
     const [events, setEvents] = useState([]);
@@ -13,6 +14,7 @@ const DisplayEvents: React.FC = () => {
     const [error, setError] = useState([]);
     const [loggedin, setLoggedin] = useState(true); // have to set to true initially
     const [showEventDetails, setShowEventDetails] = useState(false);
+    const { loginState, setLoginState } = useLoginState();
 
     // fetch all event data and store it into events 
     useEffect(() => {
@@ -20,10 +22,15 @@ const DisplayEvents: React.FC = () => {
             .then(response => response.json())
             .then((res) => {
                 setEvents(res);
-                setDisplayEvents(res.filter((ev: TEvent) => ev.permission === "public"));
+                if (loginState) {
+                    setDisplayEvents(res);
+                } else {
+                    setDisplayEvents(res.filter((ev: TEvent) => ev.permission === "public"));
+                }
+
             })
             .catch(err => setError(err));
-    }, [])
+    }, [loginState])
 
     // toggles the modal display for details on each event
     const showEventDetailsHandler = () => {
@@ -45,7 +52,7 @@ const DisplayEvents: React.FC = () => {
             </div>
             <div className="title">Events Page</div>
             <div>
-                {displayEvents.length > 0 ? displayEvents.map((individualEvent: TEvent) => <Event event={individualEvent} login={loggedin} onShowDetails={showEventDetailsHandler} />) : (<Loader />)}
+                {displayEvents.length > 0 ? displayEvents.map((individualEvent: TEvent, index) => <Event key={index} event={individualEvent} login={loggedin} onShowDetails={showEventDetailsHandler} />) : (<Loader />)}
             </div>
         </EventIdProvider>
     );
