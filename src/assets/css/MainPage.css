@@ -67,6 +67,11 @@ button:hover {
     overflow: hidden;
 }
 
+.display-wrapper {
+    min-height: 100vh;
+    padding: 5%;
+}
+
 .title {
     display: flex;
     align-items: center;
@@ -85,6 +90,11 @@ button:hover {
 
 .event-date {
     font-size: 35px;
+}
+
+input.search {
+    display: flex;
+    width: 50%;
 }
 
 @media screen and (max-width: 600px) {
