@@ -24,14 +24,14 @@ const NavBar: React.FC<NavBarProps> = (props) => {
     }
     window.addEventListener('scroll', changeNavColour);
 
+    // if the user is currently not logged in and would like to login, they will be navigated to the login page
+    // if user is logged in and would like to logout, sets login state to false
     const loginHandler = () => {
         if (loginState) {
             setLoginState(false);
-            console.log('logging');
         } else {
             navigate("/login");
         }
-
     }
 
     return (

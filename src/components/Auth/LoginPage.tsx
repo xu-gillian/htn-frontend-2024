@@ -4,6 +4,7 @@ import { Link, Navigate } from "react-router-dom";
 import axios from "../../api/axios";
 import { useLoginState } from "../../context/loginState-context";
 
+// login form
 const LoginPage: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -13,6 +14,7 @@ const LoginPage: React.FC = () => {
     const loginHandler = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        // sends request to login user 
         try {
             const response = await axios.post(
                 './auth',
@@ -28,6 +30,7 @@ const LoginPage: React.FC = () => {
             setPassword('');
             setLoginState(true);
         } catch (err) {
+            // an error code will be returned
             if (err instanceof Error) {
                 if (err.message.includes('400')) {
                     setError('Please provide an email and password.');

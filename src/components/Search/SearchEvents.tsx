@@ -8,11 +8,14 @@ type Props = {
     setDisplayEvents: any
 }
 
-// 
+// search and filter function for the name and event type
+// searchField -> user input
+// searchBy -> the paramete the user would like to search with
 const SearchEvents: React.FC<Props> = ({ loginState, events, setDisplayEvents }) => {
     const [searchField, setSearchField] = useState("");
     const [searchBy, setSearchBy] = useState("Name");
 
+    // update events being displayed each time user changes input in search bar
     useEffect(() => {
         var searchResult = events.filter((event: TEvent) => {
             if (searchBy === 'Name') {
