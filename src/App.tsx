@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 function App() {
     return (
         <Routes>
+            {/* public routes */}
             <Route path="/" element={<DisplayEvents />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegistrationPage />} />

@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import "../../assets/css/LoginPage.css";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import "../../assets/css/AuthPage.css";
+import { Link, Navigate } from "react-router-dom";
 import axios from "../../api/axios";
+import { useLoginState } from "../../context/loginState-context";
 
 const LoginPage: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { loginState, setLoginState } = useLoginState();
 
     const loginHandler = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -23,6 +25,7 @@ const LoginPage: React.FC = () => {
             console.log(JSON.stringify(response?.data))
             setEmail('');
             setPassword('');
+            setLoginState(true);
         } catch (err) {
             if (err instanceof Error) console.log(err.message);
         }
@@ -30,23 +33,32 @@ const LoginPage: React.FC = () => {
 
     return (
         <div className="login-wrapper">
-            <form onSubmit={loginHandler}>
-                <input
-                    type="text"
-                    placeholder="Enter Email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                />
+            <div className="split left">hello</div>
+            <div className="split right">
+                <div className="auth-container">
+                    <h1 className="auth-title">Sign In</h1>
+                    <form className="login-form" onSubmit={loginHandler}>
+                        <input
+                            className="input"
+                            type="text"
+                            placeholder="Enter Email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                        />
 
-                <input
-                    type="text"
-                    placeholder="Enter Password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                />
+                        <input
+                            className="input"
+                            type="text"
+                            placeholder="Enter Password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
 
-                <button type="submit">Login</button>
-            </form>
+                        <button className="auth-button" type="submit">Login{loginState ? <Navigate to="/"></Navigate> : <></>}</button>
+                        <Link className="login-redirect" to={"/register"}>Don't have an account?</Link>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 }

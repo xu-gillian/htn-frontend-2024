@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLoginState } from "../context/loginState-context";
 import { TEvent } from "../types/Events.types";
+import { useNavigate } from "react-router-dom";
 
 // navigation component
 type NavBarProps = {
@@ -11,7 +12,7 @@ type NavBarProps = {
 const NavBar: React.FC<NavBarProps> = (props) => {
     const [navColour, setNavColour] = useState(false);
     const { loginState, setLoginState } = useLoginState();
-    const [loginText, setLoginText] = useState("Login");
+    const navigate = useNavigate();
 
     // change nav colour when scrolling
     const changeNavColour = () => {
@@ -23,22 +24,19 @@ const NavBar: React.FC<NavBarProps> = (props) => {
     }
     window.addEventListener('scroll', changeNavColour);
 
-
-    // handle the login state here - when it changes, change which events are displayed
     const loginHandler = () => {
-        setLoginState(!loginState);
         if (loginState) {
-            props.setDisplayEvents(props.allEvents);
-            setLoginText("Logout");
+            setLoginState(false);
+            console.log('logging');
         } else {
-            props.setDisplayEvents(props.allEvents.filter((ev: TEvent) => ev.permission === "public"));
-            setLoginText("Login");
+            navigate("/login");
         }
+
     }
 
     return (
         <div className={navColour ? 'nav-top active' : 'nav-top'}>
-            <button className="login" onClick={loginHandler}>{loginText}</button>
+            <button className="login" onClick={loginHandler}>{loginState ? 'Logout' : 'Login'}</button>
         </div>
     );
 }

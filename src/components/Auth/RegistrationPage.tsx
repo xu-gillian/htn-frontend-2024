@@ -1,17 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import axios from "../../api/axios";
 
 const RegistrationPage: React.FC = () => {
-    // const paperStlye = {
-    //     padding: 20, height: '70vh', width: 280, margin: "20px auto", "border-radius": "2%"
-    // }
-
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState(false);
 
     const registerHandler = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -33,60 +31,67 @@ const RegistrationPage: React.FC = () => {
             setLastName('');
             setPassword('');
             setEmail('');
+            setError('');
+            setSuccess(true);
         } catch (err) {
-            if (err instanceof Error) console.log(err.message);
+            if (err instanceof Error) {
+                if ((err.message).includes('400')) {
+                    setError('Please provide a username and password.');
+                } else if ((err.message).includes('409')) {
+                    setError('This email already exists');
+                } else if ((err.message).includes('500')) {
+                    setError('Server error. Please try again.');
+                }
+            }
+            setSuccess(false);
         }
 
     }
 
     return (
         <div className="login-wrapper">
-            <form onSubmit={registerHandler}>
-                <input
-                    type="text"
-                    placeholder="First Name"
-                    value={firstName}
-                    onChange={e => setFirstName(e.target.value)}
-                />
+            <div className="split left">hello</div>
+            <div className="split right">
+                <div className="auth-container">
+                    <h1 className="auth-title">Sign Up</h1>
+                    <form onSubmit={registerHandler}>
+                        <input
+                            className="input"
+                            type="text"
+                            placeholder="First Name"
+                            value={firstName}
+                            onChange={e => setFirstName(e.target.value)}
+                        />
 
-                <input
-                    type="text"
-                    placeholder="Last Name"
-                    value={lastName}
-                    onChange={e => setLastName(e.target.value)}
-                />
+                        <input
+                            className="input"
+                            type="text"
+                            placeholder="Last Name"
+                            value={lastName}
+                            onChange={e => setLastName(e.target.value)}
+                        />
 
-                <input
-                    type="text"
-                    placeholder="Enter Email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                />
+                        <input
+                            className="input"
+                            type="text"
+                            placeholder="Enter Email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                        />
 
-                <input
-                    type="text"
-                    placeholder="Enter Password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                />
+                        <input
+                            className="input"
+                            type="text"
+                            placeholder="Enter Password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
 
-                <button type="submit">Register</button>
-            </form>
-
-
-
-            {/* <ThemeProvider theme={theme}> */}
-            {/* <Paper elevation={10} style={paperStlye}> */}
-            {/* <Grid>
-                    Login
-                </Grid> */}
-            {/* <TextField id="standard-basic" label="First Name" placeholder="Enter First Name" fullWidth required />
-                <TextField id="standard-basic" label="Last Name" placeholder="Enter Last Name" fullWidth required />
-                <TextField id="standard-basic" label="Email" placeholder="Enter Email" fullWidth required />
-                <TextField color="secondary" inputProps={{ style: { color: "white" } }} id="standard-basic" label="Password" placeholder="Enter Password" fullWidth required />
-                <Link to="/">Register</Link> */}
-            {/* </Paper> */}
-            {/* </ThemeProvider> */}
+                        <button className="auth-button" type="submit">Register{success ? <Navigate to="/login"></Navigate> : <></>}</button>
+                        <Link className="login-redirect" to={"/login"}>Already have an account?</Link>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 }

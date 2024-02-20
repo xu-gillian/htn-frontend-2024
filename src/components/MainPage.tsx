@@ -6,7 +6,6 @@ import { TEvent } from '../types/Events.types';
 import Details from './Events/Details';
 import { EventIdProvider } from '../context/eventId-context';
 import NavBar from './NavBar';
-import LoginStateProvider from '../context/loginState-context';
 
 const DisplayEvents: React.FC = () => {
     const [events, setEvents] = useState([]);
@@ -36,20 +35,18 @@ const DisplayEvents: React.FC = () => {
 
     return (
         <EventIdProvider>
-            <LoginStateProvider>
-                {showEventDetails && <Details login={loggedin} onHideDetails={hideEventDetailsHandler} allEvents={events} onShowDetails={showEventDetailsHandler}></Details>}
-                <NavBar allEvents={events} setDisplayEvents={setDisplayEvents}></NavBar>
-                <div className="wrapper" >
-                    <a className="event-title">TECH</a>
-                    <a className="event-title">CONFERENCE</a>
-                    <p className="event-date">SOME DATES</p>
-                    <p>Event description :{')'}</p>
-                </div>
-                <div className="title">Events Page</div>
-                <div>
-                    {displayEvents.length > 0 ? displayEvents.map((individualEvent: TEvent) => <Event event={individualEvent} login={loggedin} onShowDetails={showEventDetailsHandler} />) : (<Loader />)}
-                </div>
-            </LoginStateProvider>
+            {showEventDetails && <Details login={loggedin} onHideDetails={hideEventDetailsHandler} allEvents={events} onShowDetails={showEventDetailsHandler}></Details>}
+            <NavBar allEvents={events} setDisplayEvents={setDisplayEvents}></NavBar>
+            <div className="wrapper" >
+                <a className="event-title">TECH</a>
+                <a className="event-title">CONFERENCE</a>
+                <p className="event-date">SOME DATES</p>
+                <p>Event description :{')'}</p>
+            </div>
+            <div className="title">Events Page</div>
+            <div>
+                {displayEvents.length > 0 ? displayEvents.map((individualEvent: TEvent) => <Event event={individualEvent} login={loggedin} onShowDetails={showEventDetailsHandler} />) : (<Loader />)}
+            </div>
         </EventIdProvider>
     );
 }

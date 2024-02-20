@@ -6,14 +6,14 @@ type LoginStateType = {
     setLoginState: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-type eventIdProviderProps = {
+type loginStateProviderProps = {
     children: any;
 }
 
 const Context = React.createContext<LoginStateType>({} as LoginStateType);
 
-export const LoginStateProvider: React.FC<eventIdProviderProps> = (props) => {
-    const [loginState, setLoginState] = useState(true);
+export const LoginStateProvider: React.FC<loginStateProviderProps> = (props) => {
+    const [loginState, setLoginState] = useState(false);
 
     return (
         <Context.Provider value={{ loginState, setLoginState }}>
