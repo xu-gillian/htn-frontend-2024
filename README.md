@@ -19,8 +19,8 @@ Without further ado, here is what is included in my implementation!
 5. Open a new terminal, and run `npx tsx server.tsx`
 
 ## Project Structure
-`src
-├── App.test.tsx
+`src__
+├── App.test.tsx__
 ├── App.tsx
 ├── api
 │   └── axios.tsx
