@@ -1,4 +1,5 @@
 Hey there! 👋
+
 I hope this events page finds you well! I had a lot of fun creating it and learned a lot.
 Thank you for taking the time to review my submission. I hope that you enjoy it! :) 
 Without further ado, here is what is included in my implementation!  
