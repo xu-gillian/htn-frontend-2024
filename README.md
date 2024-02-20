@@ -4,14 +4,13 @@ Thank you for taking the time to review my submission. I hope that you enjoy it!
 Without further ado, here is what is included in my implementation!  
 
 # Tasks 
-- [ ] Plan out project structure.
-- [ ] Create designs for the event page.
-- [ ] Display events and the information for all events provided when visiting the app
-- [ ] Sort by start time. 
-- [ ] Hide private events based on user being logged in logged out.
-- [ ] Create registration and login authentication.
-- [ ] Fix project structure
-- [ ] Add search/filter functionality
+- Plan out project structure.
+- Create designs for the event page.
+- Display events and the information for all events provided when visiting the app
+- Hide private events based on user being logged in logged out.
+- Create registration and login authentication.
+- Fix project structure
+- Add search/filter functionality
 
 # Setup
 1. Clone the repository into your local development environment and navigate to that folder
