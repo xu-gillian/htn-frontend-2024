@@ -19,8 +19,7 @@ Without further ado, here is what is included in my implementation!
 5. Open a new terminal, and run `npx tsx server.tsx`
 
 ## Project Structure
-`
-src
+`src
 ├── App.test.tsx
 ├── App.tsx
 ├── api
