@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TEvent } from '../../types/Events.types';
+import "../../assets/css/SearchEvents.css";
 
 type Props = {
     loginState: Boolean,
@@ -31,7 +32,7 @@ const SearchEvents: React.FC<Props> = ({ loginState, events, setDisplayEvents })
     }, [searchField, searchBy, events, loginState, setDisplayEvents]);
 
     return (
-        <div>
+        <div className='search-wrapper'>
             <input
                 className='input search'
                 type="text"
@@ -39,8 +40,8 @@ const SearchEvents: React.FC<Props> = ({ loginState, events, setDisplayEvents })
                 value={searchField}
                 onChange={e => setSearchField(e.target.value)}
             />
-            <div>Search By</div>
-            <select name='search-options' onChange={e => setSearchBy(e.currentTarget.value)} value={searchBy} >
+            <div className='selectby-text'>Search By</div>
+            <select className="input search" name='search-options' onChange={e => setSearchBy(e.currentTarget.value)} value={searchBy} >
                 <option value="Name">Name</option>
                 <option value="EventType">Event Type</option>
             </select>
