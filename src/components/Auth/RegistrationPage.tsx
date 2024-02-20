@@ -36,7 +36,7 @@ const RegistrationPage: React.FC = () => {
         } catch (err) {
             if (err instanceof Error) {
                 if ((err.message).includes('400')) {
-                    setError('Please provide a username and password.');
+                    setError('Please provide an email and password.');
                 } else if ((err.message).includes('409')) {
                     setError('This email already exists');
                 } else if ((err.message).includes('500')) {
@@ -50,7 +50,7 @@ const RegistrationPage: React.FC = () => {
 
     return (
         <div className="login-wrapper">
-            <div className="split left">hello</div>
+            <div className="split left"></div>
             <div className="split right">
                 <div className="auth-container">
                     <h1 className="auth-title">Sign Up</h1>
@@ -89,6 +89,8 @@ const RegistrationPage: React.FC = () => {
 
                         <button className="auth-button" type="submit">Register{success ? <Navigate to="/login"></Navigate> : <></>}</button>
                         <Link className="login-redirect" to={"/login"}>Already have an account?</Link>
+                        <Link className="login-redirect" to={"/"}>Home</Link>
+                        {(error != '' ? <div className="error">{error}</div> : <div></div>)}
                     </form>
                 </div>
             </div>
